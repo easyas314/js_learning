@@ -1,4 +1,8 @@
 //
+// improvements: error handling and async/await to replace .then
+//
+// ... so some error checking at the end of the .then chain
+
 console.log("Hoping to fetch a rainbow.")
 
 rainbow = "images/avatar_sm.jpg";

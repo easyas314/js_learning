@@ -1,4 +1,7 @@
 //
+// Coding Train series
+// https://www.youtube.com/watch?v=tc8DU14qX6I
+//
 console.log("Hoping to fetch a rainbow.")
 
 rainbow = "images/avatar_sm.jpg";
