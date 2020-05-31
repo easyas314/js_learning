@@ -2,15 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width", initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width", initial-scale="1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Examples from Coding Train: Data/APIs Pt 2 CSV</title>
-        <script src="ex2_fetch_csv.js"></script>
+        <title>Examples from Coding Train: Data/APIs Pt 3 Charting</title>
     </head>
-    <body>
-        // Data from: https://data.giss.nasa.gov/gistemp
-        //
 
+    <body>
+            <div>
+                <canvas id="framus" width="400" height="400" style="border: solid;"></canvas>
+            </div>
+        <h2>Demo on use of the chartjs module for basic graphing</h2>
 
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="./ex3_chartjs.js"></script>
 </html>
