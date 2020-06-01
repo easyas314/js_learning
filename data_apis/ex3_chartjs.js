@@ -16,6 +16,8 @@
 
 console.log("CSV charting games");
 
+//
+// refactor for getData to return these values
 var myXlabels = [];
 var myYdata = [];
 
@@ -37,6 +39,7 @@ async function chartIt() {
             labels: myXlabels,
             datasets: [{
                 //label: '# of Votes',
+                fill: false,
                 label: 'Global Temperature',
                 //data: [12, 19, 3, 5, 2, 3],
                 data: myYdata,
