@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+    <title>Chaining Fetch Requests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+
+</head>
+
+<body>
+    <h1>One fetch example</h1>
+    <script>
+        fetch("json/config.json").then(response => {
+            return response.json();
+        }).then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.error(err)
+        });
+    </script>
+
+    <h1>2 fetch example</h1>
+    <script>
+        fetch("json/config.json").then(response => {
+            return response.json();
+        }).then(data => {
+            return fetch("themes/" + data.theme + ".css");
+        }).then(response => {
+            return response.text(); //this is not json, it is text
+        }).then(theContents => {
+            console.log(theContents)
+        })
+        .catch(err => {
+            console.error(err)
+        });
+    </script>
+
+    <h1>Alternate factoring up 1 fetch example</h1>
+    <script>
+        function fetchFirst() {
+            return new Promise((resolve, reject) => {
+                fetch("json/config.json").then(response => {
+                    return response.json();
+                }).then(data => {
+                    resolve(data);
+                }).catch(err => {
+                    reject(err);
+                })
+            })
+        }
+
+        fetchFirst().then(data => {
+            console.log(data);
+        }).catch(err => {
+            console.error(err)
+        });
+    </script>
+
+    <h1>Cleaned up 2 fetch example</h1>
+    <script>
+
+        function fetchFirst() {
+            return new Promise((resolve, reject) => {
+                fetch("json/config.json").then(response => {
+                    return response.json();
+                }).then(data => {
+                    resolve(data);
+                }).catch(err => {
+                    reject(err);
+                })
+            })
+        }
+
+        function fetchSecond(themeName) {
+            return new Promise((resolve, reject) => {
+                fetch("themes/" + themeName + ".css").then(response => {
+                    return response.text();
+                }).then(textData => {
+                    resolve(textData);
+                }).catch(err => {
+                    reject(err);
+                })
+            })
+        }
+
+
+        fetchFirst().then(data => {
+            return fetchSecond(data.theme)
+        }).then(textData =>{
+            console.log('2nd aka theme loaded!')
+            console.log(textData)
+        })
+        .catch(err => {
+            console.error(err)
+        });
+
+    </script>
+</body>
